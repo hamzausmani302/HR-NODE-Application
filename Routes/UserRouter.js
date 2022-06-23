@@ -4,9 +4,11 @@ const router = express.Router()
 
 const Developer = require('../Model/Schemas/developer.schema');
 const {addDeveloper  ,getDeveloper} = require('../Services/DAO/developerDAO.js')
-router.get("/test" , async (req,res)=>{
-    const result = getDeveloper("62b433edbb065521b846ae4c");
-    console.log(result);
+router.get("/test/:id" , async (req,res)=>{
+    const _id = req.params.id; 
+
+    const result = await getDeveloper(_id);
+    res.send(result);
 })
 
 module.exports = router
